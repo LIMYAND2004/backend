@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, stg]
   pull_request:
-    branches: [main, develop]
+    branches: [main, stg]
   workflow_dispatch:
     inputs:
       environment:
@@ -80,7 +80,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: |
-      (github.event_name == 'push' && github.ref == 'refs/heads/develop') ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/stg') ||
       (github.event_name == 'workflow_dispatch' && inputs.environment == 'staging')
     permissions:
       contents: read
